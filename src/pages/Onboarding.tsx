@@ -73,7 +73,7 @@ const Onboarding = () => {
       <div className="onboarding-container">
         {/*Header */}
         <div className="p-6 pt-12 onboarding-wrapper">
-          <div className="flex items-center gap-3 mb-2">
+          <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-emerald-500 flex items-center justify-center">
               <PersonStandingIcon className="w-6 h-6 text-white" />
             </div>
@@ -86,7 +86,7 @@ const Onboarding = () => {
           </p>
         </div>
         {/*Proggress indicator */}
-        <div className="p-6 mb-8 onboarding-wrapper">
+        <div className="p-6 onboarding-wrapper">
           <div className="flex  gap-2 max-w-2xl">
             {[1, 2, 3].map((s) => (
               <div
@@ -174,7 +174,7 @@ const Onboarding = () => {
 
           {step === 3 && (
             <div className="space-y-6 onboarding-wrapper">
-              <div className="flex items-center gap-4 mb-8">
+              <div className="flex items-center gap-4">
                 <div className="size-12 rounded-xl bg-emerald-50 dark:bg-emerald-900/10 border border-emerald-100 dark:border-emerald-800 flex items-center justify-center">
                   <Target className="size-6 text-emerald-600 dark:text-emerald-400" />
                 </div>
@@ -191,7 +191,7 @@ const Onboarding = () => {
               </div>
 
               {/* options */}
-              <div className="space-y-4 max-w-lg">
+              <div className="space-y-3 max-w-lg">
                 {goalOptions.map((option) => (
                   <button
                     key={option.value}
@@ -230,11 +230,11 @@ const Onboarding = () => {
               <div className="border-t border-slate-200 dark:border-slate-700 my-6 max-w-lg"></div>
 
               {/* Daily targets */}
-              <div className="space-y-8 max-w-lg">
+              <div className="space-y-4 max-w-lg">
                 <h3 className="text-md font-medium textsl800 dark:text-white mb-4">
                   Daily targets
                 </h3>
-                <div className="space-y-6">
+                <div className="space-y-4">
                   <Slider
                     label="Daily Calorie Intake"
                     min={120}
@@ -253,7 +253,7 @@ const Onboarding = () => {
                     value={formData.dailyCalorieBurn}
                     onChange={(v) => updateField("dailyCalorieBurn", v)}
                     unit="kcal"
-                    infoText="The total calories you aim to"
+                    infoText="The total calories you aim to burn through exercise and activty each day."
                   />
                 </div>
               </div>
