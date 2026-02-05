@@ -9,7 +9,7 @@ const ThemeContext = createContext<ThemeContextType|undefined>(undefined);
 
 export function ThemeProvider({children}:{children:React.ReactNode}){
 
-    const [theme,setTheme]= useState(()=>localStorage.getItem('theme') || (window.matchMedia("(prefers-color-schem:dark)").matches ? "dark" : "light"));
+    const [theme,setTheme]= useState(()=>localStorage.getItem('theme') || (window.matchMedia("(prefers-color-scheme:dark)").matches ? "dark" : "light"));
 
     //update theme when state changes
     useEffect(()=>{
@@ -19,9 +19,15 @@ export function ThemeProvider({children}:{children:React.ReactNode}){
         localStorage.setItem('theme',theme)
     },[theme])
 
-    const toggleTheme =()=>{
-        setTheme((prev)=>(prev==='light'?'dark':'light'))
-    }
+    const toggleTheme = () => {
+      setTheme((prev) => {
+        const newTheme = prev === "dark" ? "light" : "dark";
+        console.log("Theme changed from", prev, "to", newTheme);
+        return newTheme;
+      });
+    };
+
+    
     return <ThemeContext.Provider value={{theme,toggleTheme}}>
         {children}
     </ThemeContext.Provider>
