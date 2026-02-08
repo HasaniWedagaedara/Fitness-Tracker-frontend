@@ -17,8 +17,8 @@ import CaloriesChart from "../assets/CaloriesChart";
 
 const Dashboard = () => {
   const { user, allActivityLogs, allFoodLogs } = useAppContext();
-  const [todayFood, setTodayFood] = useState<FoodEntry>([]);
-  const [todayActivities, setTodayActivities] = useState<ActivityEntry>([]);
+  const [todayFood, setTodayFood] = useState<FoodEntry[]>([]);
+  const [todayActivities, setTodayActivities] = useState<ActivityEntry[]>([]);
 
   const DAILY_CALORIE_LIMIT: number = user?.dailyCalorieIntake || 2000;
 

@@ -18,7 +18,7 @@ import api from "../configs/api";
 const ActivityLog = () => {
   const { allActivityLogs, setAllActivityLogs } = useAppContext();
 
-  const [activities, setActivities] = useState<ActivityEntry>([]);
+  const [activities, setActivities] = useState<ActivityEntry[]>([]);
   const [showForm, setShowForm] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
