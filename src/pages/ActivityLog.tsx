@@ -12,8 +12,8 @@ import {
 } from "lucide-react";
 import Input from "../components/ui/Input";
 import Button from "../components/ui/Button";
-import mockApi from "../assets/mockApi";
 import toast from "react-hot-toast";
+import api from "../configs/api";
 
 const ActivityLog = () => {
   const { allActivityLogs, setAllActivityLogs } = useAppContext();
@@ -48,7 +48,7 @@ const ActivityLog = () => {
       return toast("Please enter valid data");
     }
     try {
-      const { data } = await mockApi.activityLogs.create({
+      const { data } = await api.post("/api/activit-logs", {
         data: formData,
       });
       setAllActivityLogs((prev) => [...prev, data]);
@@ -60,7 +60,7 @@ const ActivityLog = () => {
       setShowForm(false);
     } catch (error: any) {
       console.log(error);
-      toast.error(error?.message || "Failed to add activty");
+      toast.error(error?.response?.data?.error?.message || error?.message);
     }
   };
 
@@ -94,11 +94,13 @@ const ActivityLog = () => {
         "Are you sure you want to delete this entry ?",
       );
       if (!confirm) return;
-      await mockApi.foodLogs.delete(documentId);
-      setAllFoodLogs((prev) => prev.filter((e) => e.documentId !== documentId));
+      await api.delete(`/api/activit-logs/${documentId}`);
+      setAllActivityLogs((prev) =>
+        prev.filter((a) => a.documentId !== documentId),
+      );
     } catch (error: any) {
       console.log(error);
-      toast.error(error.message || "Failed to delete food");
+      toast.error(error?.response?.data?.error?.message || error?.message);
     }
   };
 
@@ -296,7 +298,7 @@ const ActivityLog = () => {
             </div>
 
             {/* Total Summery */}
-            <div className="mt-4 pt-4 border-t border-slate-100 dark:border-slate-800 justify-between items-center">
+            <div className="flex mt-4 pt-4 border-t border-slate-100 dark:border-slate-800 justify-between items-center">
               <span className="text-slate-500 dark:text-slate-400">
                 Total Active Time
               </span>
